@@ -1,9 +1,6 @@
 let modoRemocao = false;
-// URL do seu servidor no Replit - Substitua pelo endereço real do seu projeto
-// No Replit, deixe a URL vazia para o fetch buscar no próprio servidor
-const API_URL = window.location.hostname.includes('vercel') 
-  ? 'https://50b76fb9-8c81-4975-83ef-c4a79f0635e3-00-sxorv4dfls0k.riker.replit.dev' 
-  : '';
+// URL alterada para vazia para que o fetch busque no próprio domínio (Vercel)
+const API_URL = '';
 
 async function buscarCanais() {
   const container = document.getElementById('links-container');
