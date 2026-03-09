@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Hub de Streaming</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="btn-add" onclick="adicionarStreaming()">+</button>
+  <button class="btn-remove" onclick="removerStreaming()">-</button>
+
+  <div class="container">
+    <header>
+      <h1>Canais de Streaming</h1>
+      <p>Acesse tudo em um só lugar</p>
+    </header>
+
+    <main id="links-container" class="grid-container">
+      <p>Carregando canais...</p>
+    </main>
+
+    <div class="search-container">
+      <input type="text" id="searchBar" placeholder="Procurar plataforma..." onkeyup="filtrarCanais()">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
