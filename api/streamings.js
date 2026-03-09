@@ -4,15 +4,14 @@ const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
 module.exports = async (req, res) => {
-  // Configurações de CORS para permitir requisições do seu site
+  // Configurações de CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Ou o link do seu site
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-Type, Date, X-Api-Version');
 
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
 
   try {
@@ -46,7 +45,12 @@ module.exports = async (req, res) => {
       if (error) throw error;
       return res.status(200).json({ success: true });
     }
+
+    // Se o método não for suportado
+    return res.status(405).json({ error: "Método não permitido" });
+
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    // Retorna erro como JSON para não quebrar o fetch no front-end
+    return res.status(500).json({ error: err.message || "Erro interno do servidor" });
   }
 };
