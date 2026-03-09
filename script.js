@@ -1,4 +1,6 @@
 let modoRemocao = false;
+// URL do seu servidor no Replit - Substitua pelo endereço real do seu projeto
+const API_URL = 'https://50b76fb9-8c81-4975-83ef-c4a79f0635e3-00-sxorv4dfls0k.riker.replit.dev';
 
 async function buscarCanais() {
   const container = document.getElementById('links-container');
@@ -16,7 +18,7 @@ async function buscarCanais() {
   };
 
   try {
-    const response = await fetch('/api/streamings');
+    const response = await fetch(`${API_URL}/api/streamings`);
     const data = await response.json();
 
     if (data.error) throw new Error(data.error);
@@ -88,7 +90,7 @@ async function adicionarStreaming() {
   const logo_url = logosFixos[nomeFormatado] || `https://logo.clearbit.com/${nomeFormatado}.com`;
 
   try {
-    const response = await fetch('/api/streamings', {
+    const response = await fetch(`${API_URL}/api/streamings`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nome, url, logo_url })
@@ -113,7 +115,7 @@ function removerStreaming() {
 
 async function executarRemocao(nome) {
   try {
-    const response = await fetch(`/api/streamings?nome=${encodeURIComponent(nome)}`, {
+    const response = await fetch(`${API_URL}/api/streamings?nome=${encodeURIComponent(nome)}`, {
       method: 'DELETE'
     });
 
